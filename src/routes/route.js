@@ -136,4 +136,48 @@ router.get("/film/:filmId", function(req, res){
     res.send(movieDetails[req.params.filmId -1])
 })
 
+
+ // write an api which gives the missing number in an array of integers starting from 1….e.g [1,2,3,5,6,7] 
+
+router.get('/sol1', function (req, res){
+    const arr = [1,2,3,5,6,7] 
+    const l = arr.length + 1
+    const sum = (l*(l+1))/2
+    let ActualSum = 0
+    for(let i=0; i<arr.length; i++){
+        ActualSum += arr[i]
+    }
+    const missingNumber = sum - ActualSum
+
+    res.send( { data: missingNumber  })
+})
+
+
+// If missing number is more than 1
+const array = [2,4,5,7,9]
+const n = array.length - 1
+for(let i=0; i<n; i++){
+    if(array[i] + 1 != array[i+1]){
+        console.log(array[i]+1)
+    }
+}
+
+
+  // write an api which gives the missing number in an array of integers starting from anywhere….e.g [33, 34, 35, 37, 38]
+
+router.get('/sol2', function (req, res){
+    const arr = [33, 34, 35,36, 38]
+    const l = arr.length + 1
+    const sum = (l/2)*(arr[0] + arr[arr.length-1])
+    let ActualSum = 0
+    for(let i=0; i<arr.length; i++){
+        ActualSum += arr[i]
+    }
+    const missingNumber = sum - ActualSum
+
+    res.send( { data: missingNumber  })
+})
+
+
+
 module.exports = router;
