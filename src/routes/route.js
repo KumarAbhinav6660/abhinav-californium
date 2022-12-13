@@ -158,7 +158,7 @@ const array = [2,4,5,7,9]
 const n = array.length - 1
 for(let i=0; i<n; i++){
     if(array[i] + 1 != array[i+1]){
-        console.log(array[i]+1)
+        // console.log(array[i]+1)
     }
 }
 
