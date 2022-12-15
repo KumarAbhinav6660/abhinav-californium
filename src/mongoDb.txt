@@ -1,0 +1,8 @@
+Username
+KumarAbhinav
+Password
+50fqiyRJRjrndcU1
+
+String
+mongodb+srv://KumarAbhinav:50fqiyRJRjrndcU1@cluster0.nlowfdq.mongodb.net/Abhinav6660-DB
+
