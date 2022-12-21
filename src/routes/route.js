@@ -7,6 +7,9 @@ const BookController= require("../controllers/bookController")
 const Book2Controller = require("../controllers/book2Controller")
 const authorController = require("../controllers/authorController")
 
+const CustomerController = require("../controllers/customerController")
+const CardController = require("../controllers/cardController")
+
 router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
@@ -47,5 +50,10 @@ router.post("/getAuthorsData", authorController.getAuthorsData)
 router.get("/getAuthorsName", Book2Controller.getAuthorsName)
 
  
+router.post("/createCustomersData", CustomerController.createCustomersData) 
+router.get("/getCustomersList", CustomerController.getCustomersData)
+router.post("/deleteCustomerData", CustomerController.deleteCustomersData)
+
+router.post("/createCardData", CardController.createCardsData)
 
 module.exports = router; 

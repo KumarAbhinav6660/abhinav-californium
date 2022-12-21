@@ -8,12 +8,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-mongoose.connect("mongodb+srv://KumarAbhinav:50fqiyRJRjrndcU1@cluster0.nlowfdq.mongodb.net/Abhinav6660-DB", {
+mongoose.connect("mongodb+srv://KumarAbhinav:50fqiyRJRjrndcU1@cluster0.nlowfdq.mongodb.net/Abhinav6660-DB2", {
     useNewUrlParser: true}, mongoose.set("strictQuery",true)
     )
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
- 
+  
 app.use('/', route);
  
 
