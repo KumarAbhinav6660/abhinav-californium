@@ -10,10 +10,20 @@ router.get("/test-me", function (req, res) {
 })
 
 
-
-
 router.post("/createBook", BookController.createBook  )
 
+
+const assignmentMid = require("../middlewares/middlewareAs")
+const controller1 = require("../controllers/Controller1")
+
+// router.get("/testMiddleware", assignmentMid.middlewareAs , controller1.firstHandler )
+// router.get("/testMiddleware2", assignmentMid.middlewareAs , controller1.secondHandler )
+// router.get("/testMiddleware3", assignmentMid.middlewareAs , controller1.thirdHandler )
+
+
+router.get("/testMiddleware", controller1.firstHandler )
+router.get("/testMiddleware2", controller1.secondHandler )
+router.get("/testMiddleware3", controller1.thirdHandler )
 
 
 
