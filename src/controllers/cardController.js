@@ -7,4 +7,10 @@ const createCardsData = async function(req, res){
     res.send({msg : saveData})
 }
 
+const getCardData = async function(req, res){
+    let allCards = await CardModel.find().select({_id : 0})
+    res.send({data : allCards})
+}
+
 module.exports.createCardsData = createCardsData
+module.exports.getCardData = getCardData

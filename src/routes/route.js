@@ -50,10 +50,11 @@ router.post("/getAuthorsData", authorController.getAuthorsData)
 router.get("/getAuthorsName", Book2Controller.getAuthorsName)
 
  
-router.post("/createCustomersData", CustomerController.createCustomersData) 
 router.get("/getCustomersList", CustomerController.getCustomersData)
-router.post("/deleteCustomerData", CustomerController.deleteCustomersData)
+router.delete("/deleteCustomerData", CustomerController.deleteCustomersData)
+router.post("/createCustomersData", CustomerController.createCustomersData) 
 
+router.get("/getCardsData", CardController.getCardData)
 router.post("/createCardData", CardController.createCardsData)
 
 module.exports = router; 
