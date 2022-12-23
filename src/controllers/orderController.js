@@ -1,32 +1,52 @@
 const OrderModel = require('../models/orderDocModel')
 const UserModel = require("../models/userDocModel")
+const ProductModel = require("../models/productModel")
+
+const {isValidObjectId} = require('mongoose')
 
 const createOrderDoc = async function(req, res){
-    let data = req.body
+    let orders = req.body
+    if(!orders.userId){
+        res.send({msg : "UserId is required"})
+    }
+    if(!isValidObjectId(orders.userId)){
+        res.send({msg : "There is no user with this Id"})
+    }
+    if(!orders.productId){
+        res.send({msg : "ProductId is required"})
+    }
 
-    let ID = req.body.userId
-    console.log(ID);
-    let order = req.headers["isfreeuser"]
-    // data.isFreeAppUser = order
+    if(!isValidObjectId(orders.productId)){
+        res.send({msg : "There is no product with this Id"})
+    }
 
-    let allOrders = await OrderModel.create(data)
 
-    // await OrderModel.findOneAndUpdate(
-    //     {isFreeAppUser : "true"},
-    //     {$set : {amount : 0}}
-    // )
+    let headerData = req.headers["isfreeuser"]
+    let orderData = req.body;
+    let productData = await ProductModel.findById(orderData.productId)
+    let userData = await UserModel.findById(orderData.userId)
 
-    if(order == "true"){
-        
-        let updatedData = await OrderModel.findOneAndUpdate(
-             {userId : ID},
-             {$set : {amount : 0}},
-             {new : true, upsert : true}
-         )
-         res.send({msg : updatedData})
-     }
 
-    // res.send({msg : allOrders})
+    if (headerData === "true") {
+        orderData.amount = 0
+        orderData.isFreeAppUser = "true"
+    }
+
+    if (headerData === "false") {
+        if (userData.balance >= productData.price) {
+            await UserModel.findByIdAndUpdate(orderData.userId,
+                { $inc: { balance: -(productData.price) }},
+                {new: true }
+            )
+            orderData.isFreeAppUser = "false"
+            orderData.amount = productData.price
+        } else {
+            return res.send("User haven't Sufficient Balance to buy Product.")
+        }
+    }
+
+    let orderCreatedData = await OrderModel.create(orderData);
+    res.send({ data: orderCreatedData });
 }
 
 
@@ -36,5 +56,5 @@ const getOrdersData = async function(req, res){
     res.send({data : allOrders})
 }
 
-module.exports.createOrderDoc = createOrderDoc
+module.exports.createOrderDoc = createOrderDoc 
 module.exports.getOrdersData = getOrdersData
