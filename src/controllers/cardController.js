@@ -8,7 +8,7 @@ const createCardsData = async function(req, res){
 }
 
 const getCardData = async function(req, res){
-    let allCards = await CardModel.find().select({_id : 0})
+    let allCards = await CardModel.find().populate('customerID').select({_id : 0})
     res.send({data : allCards})
 }
 

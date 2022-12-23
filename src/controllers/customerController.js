@@ -10,8 +10,7 @@ const createCustomersData = async function(req, res){
 
 
 const getCustomersData = async function(req, res){
-    let allCustomers = await CustomerModel.find({status : "ACTIVE", isDelete : "false"})
-    .populate('customerID').select({isDelete : 0})
+    let allCustomers = await CustomerModel.find({status : "ACTIVE", isDelete : "false"}).select({isDelete : 0})
     res.send({msg : allCustomers})
 }
 
