@@ -25,7 +25,7 @@ router.get("/testMiddleware", controller1.firstHandler )
 router.get("/testMiddleware2", controller1.secondHandler )
 router.get("/testMiddleware3", controller1.thirdHandler )
 
-
+ 
 
 // router.post("/createUser", UserController.createUser  )
 // router.get("/getUsersData", UserController.getUsersData)
