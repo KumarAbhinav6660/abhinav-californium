@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const ObjectId = mongoose.Schema.Types.ObjectId
 
 const customerSchema = new mongoose.Schema({
     firstName : String,
@@ -12,10 +11,7 @@ const customerSchema = new mongoose.Schema({
     DOB : Date,
     emailID : String,
     address : String,
-    customerID : {
-        type : ObjectId,
-        ref : "cardCollection"
-    },
+    customerID : String,
     status : String,
     isDelete : {
         type : Boolean,

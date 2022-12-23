@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId
 
 const cardSchema = new mongoose.Schema( {
     cardNumber : String,
@@ -9,7 +10,10 @@ const cardSchema = new mongoose.Schema( {
         default : "ACTIVE"
     }, 
     vision : String,  
-    customerID : String
+    customerID : {
+        type : ObjectId,
+        ref : 'customerCollections'
+    }
      
 }, { timestamps: true }); 
 
