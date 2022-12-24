@@ -9,6 +9,7 @@ const UserDocController = require("../controllers/userDocController")
 const OrderController = require("../controllers/orderController")
 const ProductController = require("../controllers/productDocController")
 const userMW = require("../middlewares/usermiddleware")
+const IdMW = require("../middlewares/validationMiddleware")
 
 
 router.get("/test-me", function (req, res) {
@@ -20,7 +21,7 @@ router.post("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW
 
 
 router.post("/createUser", userMW.preUserValidation,UserDocController.createUserDoc)
-router.post("/createOrder", userMW.preUserValidation, OrderController.createOrderDoc)
+router.post("/createOrder", userMW.preUserValidation, IdMW.idValidation, OrderController.createOrderDoc)
 router.post("/createProductData", ProductController.createProductData)
 router.get("/getOrdersData", OrderController.getOrdersData)
 
