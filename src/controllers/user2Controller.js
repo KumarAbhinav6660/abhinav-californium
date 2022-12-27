@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
 const user2Model = require("../models/user2Model");
 
-const createMyUser = async function (abcd, xyz) {
-    let data = abcd.body;
+const createMyUser = async function (req, res) {
+    let data = req.body;
     let savedData = await user2Model.create(data);
-    xyz.send({ msg: savedData }); 
+    res.send({ msg: savedData }); 
 }
 
 const myloginUser = async function (req, res) {
