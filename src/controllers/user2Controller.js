@@ -35,7 +35,7 @@ const myloginUser = async function (req, res) {
     if (!token) token = req.headers["x-auth-token"];
    
     let decodedToken = jwt.verify(token, "functionup-californium-very-secret-key");
-    console.log(decodedToken);  
+    // console.log(decodedToken);  
     if (!decodedToken)
       return res.send({ status: false, msg: "token is invalid" });
    
